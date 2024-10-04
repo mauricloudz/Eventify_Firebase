@@ -1,27 +1,30 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+ion-content {
+  --background: #ffffff; /* Establece el fondo blanco */
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+#container {
+  text-align: center;
+  font-size: 24px; /* Tamaño de la primera línea (EASYMMeeT) */
+  font-weight: bold;
+  margin-top: 20px; /* Espacio entre la imagen y el texto */
+  color: black; /* Cambia el color de las letras a negro para que se vean en fondo blanco */
 }
 
 #container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+  font-size: 18px; /* Tamaño del texto en el párrafo */
+  font-weight: normal;
+  margin-top: 10px; /* Espacio entre el título y el párrafo */
+  color: black; /* Texto en color negro para el párrafo */
 }
 
-#container a {
-  text-decoration: none;
+/* Estilo para el botón */
+.explore-button {
+  --background: linear-gradient(135deg, #8a2be2, #4c46e6); /* Degradado violeta */
+  color: white; /* Color del texto */
+  border-radius: 30px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño de la fuente */
+  padding: 10px 20px;
+  --padding-start: 40px;
+  --padding-end: 40px;
+  --box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25); /* Sombra del botón */
 }
