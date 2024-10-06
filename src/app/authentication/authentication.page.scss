@@ -1,0 +1,102 @@
+.auth-logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .auth-logo {
+    width: 150px; /* Ajusta el tamaño del logo */
+    height: auto;
+  }
+  
+  .auth-text {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .auth-text strong {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .auth-text p {
+    font-size: 16px;
+    color: #6c757d; /* Color de texto gris */
+  }
+  
+  .auth-form {
+    padding: 20px;
+  }
+  
+  ion-item {
+    --border-radius: 20px;
+    --padding-start: 15px;
+    margin-bottom: 15px;
+  }
+  
+  ion-input {
+    --background: #f7f7f7;
+    --padding-start: 10px;
+    --border-radius: 20px;
+  }
+  
+  .forgot-password {
+    text-align: right;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  
+  .login-button {
+    --background: linear-gradient(135deg, #8a2be2, #4c46e6); /* Color degradado del botón */
+    --border-radius: 20px;
+    margin-top: 10px;
+  }
+  
+  .or-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .or-divider hr {
+    width: 30%;
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+  }
+  
+  .or-divider span {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  
+  .social-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .social-button {
+    width: 48%;
+    --border-radius: 20px;
+    --border-color: #ddd;
+  }
+  
+  .signup-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .signup-link p {
+    font-size: 14px;
+  }
+  
+  .signup-link a {
+    color: #8a2be2; /* Color de enlace */
+    text-decoration: none;
+  }
+  
