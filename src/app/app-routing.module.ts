@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'authentication',
     loadChildren: () => import('./authentication/authentication.module').then( m => m.AuthenticationPageModule)
   },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
 ];
 
 @NgModule({

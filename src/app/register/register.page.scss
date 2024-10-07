@@ -1,0 +1,40 @@
+.register-logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .register-logo {
+    width: 150px;
+    height: auto;
+  }
+  
+  .register-form {
+    padding: 20px;
+  }
+  
+  ion-item {
+    --border-radius: 15px;
+    --padding-start: 10px;
+    --background: #f7f7f7; /* Fondo claro para los campos */
+    margin-bottom: 15px;
+    border: 1px solid #ddd; /* Borde para resaltar los campos */
+    --inner-padding: 10px; /* Espacio interno para los íconos y el texto */
+  }
+  
+  ion-icon {
+    color: #666; /* Color de los íconos */
+    font-size: 22px; /* Tamaño de los íconos */
+  }
+  
+  ion-input {
+    --padding-start: 10px;
+    color: #000; /* Texto ingresado en negro */
+  }
+  
+  .register-button {
+    --background: #3880ff; /* Azul para el botón */
+    --border-radius: 20px;
+    margin-top: 20px;
+  }
+  
