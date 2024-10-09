@@ -67,6 +67,23 @@
           "sede": ""
         }
       ]
+    },
+    {
+      "id": 5,
+      "username": "Benja",
+      "email": "benjaelgalaxia@gmail.com",
+      "password": "12345",
+      "nivel": 1,
+      "datos": [
+        {
+          "nombre": "",
+          "apellido": "",
+          "edad": "",
+          "whatsapp": "",
+          "carrera": "",
+          "sede": ""
+        }
+      ]
     }
   ]
 }
