@@ -33,6 +33,23 @@
           "sede": ""
         }
       ]
+    },
+    {
+      "id": 3,
+      "username": "mauricio",
+      "email": "maur.poblete@duocuc.cl",
+      "password": "123123123",
+      "nivel": 1,
+      "datos": [
+        {
+          "nombre": "",
+          "apellido": "",
+          "edad": "",
+          "whatsapp": "",
+          "carrera": "",
+          "sede": ""
+        }
+      ]
     }
   ]
 }
