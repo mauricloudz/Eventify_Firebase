@@ -50,6 +50,23 @@
           "sede": ""
         }
       ]
+    },
+    {
+      "id": 4,
+      "username": "Franky1764",
+      "email": "da.castillog@duocuc.cl",
+      "password": "12345678",
+      "nivel": 1,
+      "datos": [
+        {
+          "nombre": "",
+          "apellido": "",
+          "edad": "",
+          "whatsapp": "",
+          "carrera": "",
+          "sede": ""
+        }
+      ]
     }
   ]
 }
