@@ -34,6 +34,10 @@
         <ion-input formControlName="confirmPassword" placeholder="Confirmar Contraseña" type="password" required></ion-input>
       </ion-item>
 
+      <div *ngIf="registerForm?.errors?.['passwordMismatch'] && registerForm?.get('confirmPassword')?.touched">
+        <ion-text color="danger">Las contraseñas no coinciden</ion-text>
+      </div>
+
       <ion-button expand="block" color="primary" class="register-button" type="submit">
         Registrarse
       </ion-button>

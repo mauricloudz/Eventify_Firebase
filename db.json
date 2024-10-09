@@ -1,3 +1,38 @@
 {
-    "users": []
+  "users": [
+    {
+      "id": 1,
+      "username": "exampleUser",
+      "email": "example@example.com",
+      "password": "hashedPassword",
+      "nivel": 1,
+      "datos": [
+        {
+          "nombre": "Juan",
+          "apellido": "Perez",
+          "edad": 25,
+          "whatsapp": "950274710",
+          "carrera": "Ingenieria Informática",
+          "sede": "Plaza Norte"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "username": "dani",
+      "email": "dani@duoc.cl",
+      "password": "123123123",
+      "nivel": 1,
+      "datos": [
+        {
+          "nombre": "",
+          "apellido": "",
+          "edad": "",
+          "whatsapp": "",
+          "carrera": "",
+          "sede": ""
+        }
+      ]
+    }
+  ]
 }
