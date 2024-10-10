@@ -1,0 +1,32 @@
+.custom-item {
+    --background: #e8dff1;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    --padding-start: 16px;
+  }
+  
+  ion-label {
+    font-size: 14px; /* Ajusta el tamaño del texto */
+    color: #666; /* Cambia el color para mejor visibilidad */
+  }
+  
+  ion-input, ion-select {
+    --padding-start: 16px;
+    color: #000; /* Asegura que el texto ingresado sea negro */
+  }
+  
+  ion-item.ion-focused .item-label {
+    font-size: 12px; /* Ajusta el tamaño de la etiqueta cuando el campo está enfocado */
+    color: #8a2be2; /* Cambia el color de la etiqueta al estar enfocado */
+  }
+  
+  .preferences-card {
+    --background: #e8dff1;
+    border-radius: 10px;
+    padding: 12px;
+  }
+  
+  ion-button {
+    margin-top: 12px;
+  }
+  
