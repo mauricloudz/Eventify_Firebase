@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { CreateEventPage } from '../create-event/create-event.page'; 
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPage implements OnInit {
 
-  constructor() { }
+  constructor(private modalController: ModalController) { }
 
-  ngOnInit() {
+  // Método para abrir el modal con la página de creación de eventos
+  async openCreateEventModal() {
+    const modal = await this.modalController.create({
+      component: CreateEventPage, // Carga la página como modal
+      cssClass: 'create-event-modal'
+    });
+    return await modal.present();
   }
-
 }
