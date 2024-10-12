@@ -115,10 +115,13 @@
       <ion-icon name="newspaper-outline"></ion-icon>
       Noticias
     </ion-tab-button>
-    <ion-tab-button tab="add">
-      <ion-icon name="add-outline"></ion-icon>
-      Crear Evento
-    </ion-tab-button>
+    <ion-content [fullscreen]="true">
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="openCreateEventModal()">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-content>
     <ion-tab-button tab="camera">
       <ion-icon name="camera-outline"></ion-icon>
       Galeria
