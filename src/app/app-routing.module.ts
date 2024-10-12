@@ -22,9 +22,6 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },  {
-    path: 'create-event',
-    loadChildren: () => import('./create-event/create-event.module').then( m => m.CreateEventPageModule)
   },
   {
     path: 'profile',

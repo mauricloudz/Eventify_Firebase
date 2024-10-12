@@ -1,3 +1,35 @@
-<p>
-  create-event works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Nuevo Evento</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (submit)="onSubmit()">
+    <!-- Sede -->
+    <ion-item>
+      <ion-label position="floating">Sede</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <!-- Título del evento -->
+    <ion-item>
+      <ion-label position="floating">Título del Evento</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <!-- Fecha del evento -->
+    <ion-item>
+      <ion-label position="floating">Fecha del Evento</ion-label>
+      <ion-datetime display-format="DD/MM/YYYY"></ion-datetime>
+    </ion-item>
+
+    <!-- Botón para crear el evento -->
+    <ion-button expand="block" type="submit" color="primary">
+      Crear Evento
+    </ion-button>
+  </form>
+</ion-content>
