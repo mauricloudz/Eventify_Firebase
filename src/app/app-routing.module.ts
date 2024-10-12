@@ -27,9 +27,13 @@ const routes: Routes = [
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
-
-
+  {
+    path: 'not-found',
+    loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
+  },
+  { path: '**', redirectTo: 'not-found' }
 ];
+
 
 @NgModule({
   imports: [
