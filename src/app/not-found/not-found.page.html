@@ -1,13 +1,16 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>not-found</ion-title>
+    <ion-title>Página no encontrada</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">not-found</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding not-found-page">
+  <div class="container">
+    <img src="assets/img/404.png" alt="404" class="not-found-image" />
+    <h1>¡Oops! Página no encontrada</h1>
+    <p>Parece que la página que buscas no existe.</p>
+    <ion-button expand="block" routerLink="/dashboard" color="primary">
+      Volver al inicio
+    </ion-button>
+  </div>
 </ion-content>

@@ -1,0 +1,30 @@
+.not-found-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  
+    .not-found-image {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+      color: #5f27cd;
+      margin-bottom: 10px;
+    }
+  
+    p {
+      color: #8e8e93;
+      margin-bottom: 20px;
+    }
+  }
+  
