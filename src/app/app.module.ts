@@ -10,8 +10,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
+import { TabsComponent } from './tabs/tabs.component';
+
 @NgModule({
-  declarations: [AppComponent, CreateEventComponent], 
+  declarations: [TabsComponent, AppComponent, CreateEventComponent], 
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

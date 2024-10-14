@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="top">
     <ion-title>Easy MMeeT</ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" [routerLink]="['/profile']">
       <ion-avatar>
         <img src="assets/img/profile.png" />
       </ion-avatar>
@@ -106,7 +106,7 @@
 </ion-content>
 
 <!-- Barra de navegación inferior -->
-<ion-footer>
+<!-- <ion-footer>
   <ion-toolbar>
     <ion-tabs>
       <ion-tab-bar slot="bottom" class="bottom-tab-bar">
@@ -131,7 +131,7 @@
       </ion-tab-bar>
     </ion-tabs>
   </ion-toolbar> 
-</ion-footer>
+</ion-footer> -->
   
   <ion-fab slot="fixed" vertical="bottom" horizontal="center">
     <ion-fab-button size="large" color="tertiary" (click)="openCreateEventModal()">

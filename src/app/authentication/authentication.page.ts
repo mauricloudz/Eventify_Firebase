@@ -35,7 +35,7 @@ export class AuthenticationPage {
         } else if (user.password !== password) {
           this.showAlert('Clave incorrecta');
         } else {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/tabs/dashboard']);
         }
       });
     }
