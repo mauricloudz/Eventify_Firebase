@@ -12,9 +12,12 @@
     <ion-row class="ion-justify-content-center">
       <ion-col size="12" class="ion-text-center">
         <ion-avatar>
-          <img src="assets/img/profile.jpg" alt="Foto de perfil">
+          <img *ngIf="profileImage; else defaultImage" [src]="profileImage" alt="Foto de perfil">
+          <ng-template #defaultImage>
+            <img src="assets/img/profile.jpg" alt="Foto de perfil">
+          </ng-template>
         </ion-avatar>
-        <ion-button fill="clear" color="secondary" class="camera-button">
+        <ion-button fill="clear" color="secondary" class="camera-button" (click)="takePhoto()">
           <ion-icon name="camera-outline"></ion-icon>
         </ion-button>
       </ion-col>
