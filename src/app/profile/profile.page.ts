@@ -6,6 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage {
+  profile = {
+    nombre: '',
+    apellidos: '',
+    edad: null,
+    whatsapp: '',
+    carrera: '',
+    sede: '',
+    recibirNotificaciones: false,
+    mostrarPublico: false
+  };
 
   constructor() { }
 

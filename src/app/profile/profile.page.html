@@ -21,35 +21,35 @@
     </ion-row>
   </ion-grid>
 
-  <form (submit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()">
     <!-- Nombre -->
     <ion-item class="custom-item">
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" [(ngModel)]="profile.nombre" name="nombre" required></ion-input>
     </ion-item>
 
     <!-- Apellidos -->
     <ion-item class="custom-item">
       <ion-label position="floating">Apellidos</ion-label>
-      <ion-input type="text" value=""></ion-input>
+      <ion-input type="text" [(ngModel)]="profile.apellidos" name="apellidos" required></ion-input>
     </ion-item>
 
     <!-- Edad -->
     <ion-item class="custom-item">
       <ion-label position="floating">Edad</ion-label>
-      <ion-input type="number" value="" min="0"></ion-input>
+      <ion-input type="number" [(ngModel)]="profile.edad" name="edad" min="0" required></ion-input>
     </ion-item>
 
     <!-- Whatsapp -->
     <ion-item class="custom-item">
       <ion-label position="floating">Whatsapp</ion-label>
-      <ion-input type="tel"></ion-input>
+      <ion-input type="tel" [(ngModel)]="profile.whatsapp" name="whatsapp"></ion-input>
     </ion-item>
 
     <!-- Carrera -->
     <ion-item class="custom-item">
       <ion-label position="floating">Carrera</ion-label>
-      <ion-select placeholder="Selecciona tu carrera">
+      <ion-select placeholder="Selecciona tu carrera" [(ngModel)]="profile.carrera" name="carrera">
         <ion-select-option value="analistaProgramador">Analista Programador</ion-select-option>
         <ion-select-option value="ingenieriaInformatica">Ingeniería en Informática</ion-select-option>
         <ion-select-option value="ingenieriaTelecomunicaciones">Ingeniería en Telecomunicaciones</ion-select-option>
@@ -60,27 +60,12 @@
     <!-- Sede -->
     <ion-item class="custom-item">
       <ion-label position="floating">Sede</ion-label>
-      <ion-select placeholder="Selecciona tu sede">
+      <ion-select placeholder="Selecciona tu sede" [(ngModel)]="profile.sede" name="sede">
+        <!-- Opciones de Sede -->
         <ion-select-option value="alameda">Sede Alameda</ion-select-option>
         <ion-select-option value="padreAlonso">Sede Padre Alonso de Ovalle</ion-select-option>
         <ion-select-option value="antonioVaras">Sede Antonio Varas</ion-select-option>
-        <ion-select-option value="eduContinua">Sede Educación Continua</ion-select-option>
-        <ion-select-option value="maipu">Sede Maipú</ion-select-option>
-        <ion-select-option value="melipilla">Sede Melipilla</ion-select-option>
-        <ion-select-option value="plazaNorte">Sede Plaza Norte</ion-select-option>
-        <ion-select-option value="plazaOeste">Sede Plaza Oeste</ion-select-option>
-        <ion-select-option value="plazaVespucio">Sede Plaza Vespucio</ion-select-option>
-        <ion-select-option value="puenteAlto">Sede Puente Alto</ion-select-option>
-        <ion-select-option value="sanBernardo">Sede San Bernardo</ion-select-option>
-        <ion-select-option value="sanCarlos">Sede San Carlos de Apoquindo</ion-select-option>
-        <ion-select-option value="sanJoaquin">Sede San Joaquín</ion-select-option>
-        <ion-select-option value="valparaiso">Sede Valparaíso</ion-select-option>
-        <ion-select-option value="vina">Sede Viña del Mar</ion-select-option>
-        <ion-select-option value="arauco">Campus Arauco</ion-select-option>
-        <ion-select-option value="nacimiento">Campus Nacimiento</ion-select-option>
-        <ion-select-option value="sanAndres">Sede San Andrés de Concepción</ion-select-option>
-        <ion-select-option value="villarrica">Campus Villarrica</ion-select-option>
-        <ion-select-option value="puertoMontt">Sede Puerto Montt</ion-select-option>
+        <!-- Más opciones aquí... -->
       </ion-select>
     </ion-item>
 
@@ -89,11 +74,11 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <ion-checkbox slot="start"></ion-checkbox>
+            <ion-checkbox slot="start" [(ngModel)]="profile.recibirNotificaciones" name="recibirNotificaciones"></ion-checkbox>
             <ion-label>Recibir Notificaciones</ion-label>
           </ion-item>
           <ion-item>
-            <ion-checkbox slot="start"></ion-checkbox>
+            <ion-checkbox slot="start" [(ngModel)]="profile.mostrarPublico" name="mostrarPublico"></ion-checkbox>
             <ion-label>Mostrar Perfil Públicamente</ion-label>
           </ion-item>
         </ion-list>
@@ -104,7 +89,7 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-button expand="block" color="primary">Guardar Cambios</ion-button>
+          <ion-button expand="block" color="primary" type="submit">Guardar Cambios</ion-button>
         </ion-col>
         <ion-col>
           <ion-button expand="block" color="secondary" routerLink="/home">Home</ion-button>
@@ -113,29 +98,3 @@
     </ion-grid>
   </form>
 </ion-content>
-
-<!-- Barra de navegación inferior -->
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home">
-      <ion-icon name="home"></ion-icon>
-      Home
-    </ion-tab-button>
-    <ion-tab-button tab="news">
-      <ion-icon name="newspaper-outline"></ion-icon>
-      Noticias
-    </ion-tab-button>
-    <ion-tab-button tab="add">
-      <ion-icon name="add-outline"></ion-icon>
-      Crear Evento
-    </ion-tab-button>
-    <ion-tab-button tab="camera">
-      <ion-icon name="camera-outline"></ion-icon>
-      Galeria
-    </ion-tab-button>
-    <ion-tab-button tab="profile">
-      <ion-icon name="person-outline"></ion-icon>
-      Perfil
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>

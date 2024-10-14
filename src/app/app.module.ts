@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { IonicModule } from '@ionic/angular';
-
+import { FormsModule } from '@angular/forms';
 import { IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
@@ -12,8 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, CreateEventComponent], 
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
+
 })
 export class AppModule {}
