@@ -1,17 +1,57 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Mantente al día con los últimos Eventos</ion-title>
+  <ion-toolbar class="top">
+    <ion-title>Easy MMeeT</ion-title>
     <ion-buttons slot="end">
       <ion-avatar>
         <img src="assets/img/profile.png" />
       </ion-avatar>
     </ion-buttons>
   </ion-toolbar>
+  <!-- Buscador -->
+  <ion-searchbar placeholder="Buscar" showCancelButton="focus"></ion-searchbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- Buscador -->
-  <ion-searchbar placeholder="Buscar" showCancelButton="focus"></ion-searchbar>
+
+  <!-- Sección: Categorías -->
+  <ion-text>
+    <h2>Categorías</h2>
+  </ion-text>
+  <ion-grid>
+    <ion-row class="category-row">
+      <ion-col size="auto">
+        <ion-button color="light" fill="solid" shape="round" class="category-button">
+          <ion-icon slot="icon-only" name="briefcase-outline"></ion-icon>
+        </ion-button>
+        <p>Talleres</p>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-button color="light" fill="solid" shape="round" class="category-button">
+          <ion-icon slot="icon-only" name="star-outline"></ion-icon>
+        </ion-button>
+        <p>Desafíos</p>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-button color="light" fill="solid" shape="round" class="category-button">
+          <ion-icon slot="icon-only" name="book-outline"></ion-icon>
+        </ion-button>
+        <p>Mentorías</p>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-button color="light" fill="solid" shape="round" class="category-button">
+          <ion-icon slot="icon-only" name="camera-outline"></ion-icon>
+        </ion-button>
+        <p>Charlas</p>
+      </ion-col>
+      <ion-col size="auto">
+        <ion-button color="light" fill="solid" shape="round" class="category-button">
+          <ion-icon slot="icon-only" name="train-outline"></ion-icon>
+        </ion-button>
+        <p>Stands</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
 
   <!-- Sección: Descubre nuevos eventos -->
   <ion-text>
@@ -38,45 +78,6 @@
     </ion-row>
   </ion-grid>
 
-  <!-- Sección: Categorías -->
-<!-- Sección: Categorías -->
-<ion-text>
-  <h2>Categorías</h2>
-</ion-text>
-<ion-grid>
-  <ion-row class="category-row">
-    <ion-col size="auto">
-      <ion-button fill="solid" shape="round" class="category-button">
-        <ion-icon name="briefcase-outline"></ion-icon>
-      </ion-button>
-      <p>Talleres</p>
-    </ion-col>
-    <ion-col size="auto">
-      <ion-button fill="solid" shape="round" class="category-button">
-        <ion-icon name="star-outline"></ion-icon>
-      </ion-button>
-      <p>Desafíos</p>
-    </ion-col>
-    <ion-col size="auto">
-      <ion-button fill="solid" shape="round" class="category-button">
-        <ion-icon name="book-outline"></ion-icon>
-      </ion-button>
-      <p>Mentorías</p>
-    </ion-col>
-    <ion-col size="auto">
-      <ion-button fill="solid" shape="round" class="category-button">
-        <ion-icon name="camera-outline"></ion-icon>
-      </ion-button>
-      <p>Charlas</p>
-    </ion-col>
-    <ion-col size="auto">
-      <ion-button fill="solid" shape="round" class="category-button">
-        <ion-icon name="train-outline"></ion-icon>
-      </ion-button>
-      <p>Stands</p>
-    </ion-col>
-  </ion-row>
-</ion-grid>
 
   <!-- Sección: Eventos Recomendados -->
   <ion-text>
@@ -105,30 +106,35 @@
 </ion-content>
 
 <!-- Barra de navegación inferior -->
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home">
-      <ion-icon name="home"></ion-icon>
-      Home
-    </ion-tab-button>
-    <ion-tab-button tab="news">
-      <ion-icon name="newspaper-outline"></ion-icon>
-      Noticias
-    </ion-tab-button>
-    <ion-content [fullscreen]="true">
-      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button (click)="openCreateEventModal()">
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </ion-content>   
-    <ion-tab-button tab="camera">
-      <ion-icon name="camera-outline"></ion-icon>
-      Galeria
-    </ion-tab-button>
-    <ion-tab-button tab="profile">
-      <ion-icon name="person-outline"></ion-icon>
-      Perfil
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom" class="bottom-tab-bar">
+        <ion-tab-button tab="home">
+          <ion-icon name="home"></ion-icon>
+          Home
+        </ion-tab-button>
+        <ion-tab-button tab="news">
+          <ion-icon name="newspaper-outline"></ion-icon>
+          Noticias
+        </ion-tab-button>
+        <ion-tab-button>
+        </ion-tab-button>
+        <ion-tab-button tab="camera">
+          <ion-icon name="camera-outline"></ion-icon>
+          Galeria
+        </ion-tab-button>
+        <ion-tab-button tab="profile">
+          <ion-icon name="person-outline"></ion-icon>
+          Perfil
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar> 
+</ion-footer>
+  
+  <ion-fab slot="fixed" vertical="bottom" horizontal="center">
+    <ion-fab-button size="large" color="tertiary" (click)="openCreateEventModal()">
+      <ion-icon name="add" size="large"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
