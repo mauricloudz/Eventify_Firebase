@@ -84,6 +84,23 @@
           "sede": ""
         }
       ]
+    },
+    {
+      "id": 6,
+      "username": "Pato",
+      "email": "patricio.toro87@gmail.com",
+      "password": "1234",
+      "nivel": 1,
+      "datos": [
+        {
+          "nombre": "",
+          "apellido": "",
+          "edad": "",
+          "whatsapp": "",
+          "carrera": "",
+          "sede": ""
+        }
+      ]
     }
   ]
 }
