@@ -1,42 +1,41 @@
-import { Component } from '@angular/core';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { UserService } from '../services/user.service';
+import { ProfileEditComponent } from '../components/profile-edit/profile-edit.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
 })
-export class ProfilePage {
-  profileImage: string | null = null; // Aquí se almacena la imagen del perfil
-  profile = {
-    nombre: '',
-    apellidos: '',
-    edad: null,
-    whatsapp: '',
-    carrera: '',
-    sede: '',
-    recibirNotificaciones: false,
-    mostrarPublico: false
-  };
+export class ProfilePage implements OnInit {
+  profile: any = {};
 
-  constructor() { }
+  constructor(private userService: UserService, private modalController: ModalController) {}
 
-  // Método para manejar el envío del formulario
-  onSubmit() {
-    // Lógica para manejar el envío de datos del perfil
-    console.log('Perfil actualizado');
-    alert('Cambios guardados con éxito');
+  ngOnInit() {
+    this.loadProfile();
   }
-  //método para las fotografías
-  async takePhoto() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.DataUrl,
-      source: CameraSource.Prompt, // Permite elegir entre cámara o galería
+
+  loadProfile() {
+    const userId = 1; // ID del usuario logeado
+    this.userService.getUser(userId).subscribe((data: any) => {
+      this.profile = data.datos[0];
+    });
+  }
+
+  async openEditModal() {
+    const modal = await this.modalController.create({
+      component: ProfileEditComponent,
+      componentProps: { profile: this.profile }
     });
 
-    this.profileImage = image?.dataUrl || null; // Guardamos la imagen en formato DataURL
+    modal.onDidDismiss().then((data) => {
+      if (data.data) {
+        this.profile = data.data;
+      }
+    });
+
+    return await modal.present();
   }
 }
-

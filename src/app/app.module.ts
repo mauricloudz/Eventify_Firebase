@@ -11,9 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TabsComponent } from './tabs/tabs.component';
+import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 
 @NgModule({
-  declarations: [TabsComponent, AppComponent, CreateEventComponent], 
+  declarations: [TabsComponent, AppComponent, CreateEventComponent, ProfileEditComponent], 
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
