@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service';
 import { ProfileEditComponent } from '../components/profile-edit/profile-edit.component';
 
 @Component({
@@ -11,17 +12,26 @@ import { ProfileEditComponent } from '../components/profile-edit/profile-edit.co
 export class ProfilePage implements OnInit {
   profile: any = {};
 
-  constructor(private userService: UserService, private modalController: ModalController) {}
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {
     this.loadProfile();
   }
 
   loadProfile() {
-    const userId = 1; // ID del usuario logeado
-    this.userService.getUser(userId).subscribe((data: any) => {
-      this.profile = data.datos[0];
-    });
+    const userId = this.authService.getUserId(); // Obtener el ID del usuario logueado
+    if (userId !== null) {
+      this.userService.getUser(userId).subscribe((data: any) => {
+        this.profile = data.datos[0];
+      });
+    } else {
+      // Manejar el caso en que no hay usuario logueado
+      console.error('No user logged in');
+    }
   }
 
   async openEditModal() {

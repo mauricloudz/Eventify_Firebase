@@ -8,52 +8,52 @@
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="save()">
+  <form [formGroup]="profileForm" (ngSubmit)="save()">
     <!-- Nombre -->
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" [(ngModel)]="profile.nombre" name="nombre" required></ion-input>
+      <ion-input type="text" formControlName="nombre" required></ion-input>
     </ion-item>
 
-    <!-- Apellidos -->
+    <!-- Apellido -->
     <ion-item>
-      <ion-label position="floating">Apellidos</ion-label>
-      <ion-input type="text" [(ngModel)]="profile.apellidos" name="apellidos" required></ion-input>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input type="text" formControlName="apellido" required></ion-input>
     </ion-item>
 
     <!-- Edad -->
     <ion-item>
       <ion-label position="floating">Edad</ion-label>
-      <ion-input type="number" [(ngModel)]="profile.edad" name="edad" min="0" required></ion-input>
+      <ion-input type="number" formControlName="edad" min="0" required></ion-input>
     </ion-item>
 
     <!-- Whatsapp -->
     <ion-item>
       <ion-label position="floating">Whatsapp</ion-label>
-      <ion-input type="tel" [(ngModel)]="profile.whatsapp" name="whatsapp"></ion-input>
+      <ion-input type="tel" formControlName="whatsapp"></ion-input>
     </ion-item>
 
     <!-- Carrera -->
     <ion-item>
       <ion-label position="floating">Carrera</ion-label>
-      <ion-select placeholder="Selecciona tu carrera" [(ngModel)]="profile.carrera" name="carrera">
-        <ion-select-option value="analistaProgramador">Analista Programador</ion-select-option>
-        <ion-select-option value="ingenieriaInformatica">Ingeniería en Informática</ion-select-option>
-        <ion-select-option value="ingenieriaTelecomunicaciones">Ingeniería en Telecomunicaciones</ion-select-option>
-        <ion-select-option value="ingenieriaInfraestructura">Ingeniería en Infraestructura</ion-select-option>
+      <ion-select placeholder="Selecciona tu carrera" formControlName="carrera">
+        <ion-select-option value="Analista Programador">Analista Programador</ion-select-option>
+        <ion-select-option value="Ingeniería en Informatica">Ingeniería en Informática</ion-select-option>
       </ion-select>
     </ion-item>
 
     <!-- Sede -->
     <ion-item>
       <ion-label position="floating">Sede</ion-label>
-      <ion-select placeholder="Selecciona tu sede" [(ngModel)]="profile.sede" name="sede">
-        <ion-select-option value="alameda">Sede Alameda</ion-select-option>
-        <ion-select-option value="padreAlonso">Sede Padre Alonso de Ovalle</ion-select-option>
-        <ion-select-option value="antonioVaras">Sede Antonio Varas</ion-select-option>
+      <ion-select placeholder="Selecciona sede" formControlName="sede">
+        <ion-select-option value="Alonso de Ovalle">Alonso de Ovalle</ion-select-option>
+        <ion-select-option value="Plaza Norte">Plaza Norte</ion-select-option>
       </ion-select>
     </ion-item>
 
-    <ion-button expand="block" color="primary" type="submit">Guardar</ion-button>
+    <!-- Botón para guardar -->
+    <ion-button expand="block" type="submit" color="primary">
+      Guardar
+    </ion-button>
   </form>
 </ion-content>

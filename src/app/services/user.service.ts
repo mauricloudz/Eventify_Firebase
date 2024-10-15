@@ -23,8 +23,8 @@ export class UserService {
     return this.http.get<any>(`${this.apiUrl}/${userId}`);
   }
 
-  updateUser(userId: number, userData: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/${userId}`, userData);
+  updateUser(userId: number, datos: { nombre: string, apellido: string, edad: string, whatsapp: string, carrera: string, sede: string }): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/${userId}`, { datos: [datos] });
   }
 
 }

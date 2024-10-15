@@ -1,26 +1,70 @@
-import { Component, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { ModalController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile-edit',
   templateUrl: './profile-edit.component.html',
-  styleUrls: ['./profile-edit.component.scss'],
+  styleUrls: ['./profile-edit.component.scss']
 })
-export class ProfileEditComponent {
-  @Input() profile: any;
+export class ProfileEditComponent implements OnInit {
+  @Input() profile: any; // Recibimos el perfil como input
+  profileForm: FormGroup;
 
-  constructor(private modalController: ModalController, private userService: UserService) {}
-
-  save() {
-    const userId = 1; // ID del usuario logeado
-    this.userService.updateUser(userId, { datos: [this.profile] }).subscribe(response => {
-      console.log('Datos guardados', response);
-      this.modalController.dismiss(this.profile);
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private userService: UserService,
+    private modalController: ModalController, // Inyectamos ModalController
+    private alertController: AlertController // Inyectamos AlertController
+  ) {
+    this.profileForm = this.formBuilder.group({
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      edad: ['', Validators.required],
+      whatsapp: ['', Validators.required],
+      carrera: ['', Validators.required],
+      sede: ['', Validators.required]
     });
   }
 
+  ngOnInit(): void {
+    if (this.profile) {
+      this.profileForm.patchValue(this.profile); // Inicializamos el formulario con los datos del perfil
+    }
+  }
+
+  async save() {
+    if (this.profileForm.valid) {
+      const userId = this.authService.getUserId();
+      if (userId !== null) {
+        const datos = this.profileForm.value;
+        this.userService.updateUser(userId, datos).subscribe({
+          next: async (response) => {
+            console.log('Usuario actualizado', response);
+            const alert = await this.alertController.create({
+              header: 'Éxito',
+              message: 'Datos actualizados exitosamente.',
+              buttons: ['OK']
+            });
+            await alert.present();
+            this.modalController.dismiss(datos); // Cerramos el modal y pasamos los datos actualizados
+          },
+          error: (error) => {
+            console.error('Error al actualizar el usuario', error);
+          }
+        });
+      } else {
+        console.error('No hay usuario logueado');
+      }
+    } else {
+      console.error('Formulario inválido');
+    }
+  }
+
   close() {
-    this.modalController.dismiss();
+    this.modalController.dismiss(); // Cerramos el modal sin pasar datos
   }
 }

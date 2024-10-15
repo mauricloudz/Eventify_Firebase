@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { AuthService } from '../services/auth.service'; // Importamos AuthService
 
 @Component({
   selector: 'app-authentication',
@@ -17,7 +18,8 @@ export class AuthenticationPage {
     private formBuilder: FormBuilder,
     private alertController: AlertController,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService // Inyectamos AuthService
   ) {
     this.authForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -35,6 +37,7 @@ export class AuthenticationPage {
         } else if (user.password !== password) {
           this.showAlert('Clave incorrecta');
         } else {
+          this.authService.login(user.id); // Asegúrate de que el ID del usuario se pasa correctamente
           this.router.navigate(['/tabs/dashboard']);
         }
       });

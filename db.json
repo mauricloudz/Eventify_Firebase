@@ -42,12 +42,12 @@
       "nivel": 1,
       "datos": [
         {
-          "nombre": "",
-          "apellido": "",
-          "edad": "",
-          "whatsapp": "",
-          "carrera": "",
-          "sede": ""
+          "nombre": "Mauricio",
+          "apellido": "Poblete",
+          "edad": 35,
+          "whatsapp": "950274710",
+          "carrera": "Ingeniería en Informatica",
+          "sede": "Plaza Norte"
         }
       ]
     },

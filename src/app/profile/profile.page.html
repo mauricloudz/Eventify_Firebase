@@ -7,12 +7,13 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>{{ profile.name }}</ion-card-title>
+      <ion-card-title>{{ profile.nombre }} {{ profile.apellido }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>Email: {{ profile.email }}</p>
-      <p>Teléfono: {{ profile.phone }}</p>
-      <!-- Añade más campos según sea necesario -->
+      <p>Edad: {{ profile.edad }}</p>
+      <p>Whatsapp: +56 {{ profile.whatsapp }}</p>
+      <p>Carrera: {{ profile.carrera }}</p>
+      <p>Sede: {{ profile.sede }}</p>
     </ion-card-content>
   </ion-card>
 
