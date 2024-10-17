@@ -17,8 +17,8 @@ export class ProfileEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private userService: UserService,
-    private modalController: ModalController, // Inyectamos ModalController
-    private alertController: AlertController // Inyectamos AlertController
+    private modalController: ModalController, 
+    private alertController: AlertController 
   ) {
     this.profileForm = this.formBuilder.group({
       nombre: ['', Validators.required],
@@ -32,7 +32,7 @@ export class ProfileEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.profile) {
-      this.profileForm.patchValue(this.profile); // Inicializamos el formulario con los datos del perfil
+      this.profileForm.patchValue(this.profile); 
     }
   }
 
@@ -50,7 +50,7 @@ export class ProfileEditComponent implements OnInit {
               buttons: ['OK']
             });
             await alert.present();
-            this.modalController.dismiss(datos); // Cerramos el modal y pasamos los datos actualizados
+            this.modalController.dismiss(datos); 
           },
           error: (error) => {
             console.error('Error al actualizar el usuario', error);

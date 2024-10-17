@@ -59,12 +59,12 @@
       "nivel": 1,
       "datos": [
         {
-          "nombre": "",
-          "apellido": "",
-          "edad": "",
-          "whatsapp": "",
-          "carrera": "",
-          "sede": ""
+          "nombre": "Daniela",
+          "apellido": "Castillo Gallegos",
+          "edad": 37,
+          "whatsapp": "949737196",
+          "carrera": "Ingeniería en Informática",
+          "sede": "Plaza Norte"
         }
       ]
     },

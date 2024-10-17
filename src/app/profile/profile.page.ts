@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { ProfileEditComponent } from '../components/profile-edit/profile-edit.component';
@@ -14,6 +15,7 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private userService: UserService,
+    private navCtrl: NavController,
     private authService: AuthService,
     private modalController: ModalController
   ) {}
@@ -34,11 +36,18 @@ export class ProfilePage implements OnInit {
     }
   }
 
+  goBack() {
+    this.navCtrl.back(); // Navega hacia atrás
+  }
+
+
   async openEditModal() {
     const modal = await this.modalController.create({
       component: ProfileEditComponent,
       componentProps: { profile: this.profile }
     });
+
+    
 
     modal.onDidDismiss().then((data) => {
       if (data.data) {

@@ -17,5 +17,20 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-button expand="full" (click)="openEditModal()">Editar Perfil</ion-button>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+  <ion-button shape="round" (click)="openEditModal()" class="custom-button">Editar Perfil</ion-button>
+      </ion-col>
+      <ion-col>
+  <ion-button expand="block" (click)="goBack()" color="medium" class="custom-button">Volver</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Sección para la imagen de bienvenida -->
+  <div class="welcome-section">
+    <img src="assets/img/bienvenida.png" alt="Gatita saludando" class="welcome-image" />
+    <h3>Me alegra verte por aquí</h3>
+  </div>
 </ion-content>
