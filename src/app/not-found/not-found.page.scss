@@ -40,3 +40,15 @@ p {
     font-family: 'Poppins', sans-serif;
     font-weight: 300; 
 }
+.not-found-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  border-radius: 12px; 
+  transition: transform 0.3s ease; 
+}
+
+.not-found-image:hover {
+  transform: scale(1.05); 
+}

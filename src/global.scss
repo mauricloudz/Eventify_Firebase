@@ -62,7 +62,13 @@
   }
   
   ion-button.custom-button:hover {
-    --background: var(--background-hover);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); 
+    --background: linear-gradient(45deg, #D4A5FF, #FF77FF, #B583FF);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
   }
   
+  :host(ion-button.custom-button:hover) {
+    --background: linear-gradient(45deg, #D4A5FF, #FF77FF, #B583FF);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+  }
