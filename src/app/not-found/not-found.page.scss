@@ -16,9 +16,9 @@
       margin-bottom: 20px;
     }
   
-    h1 {
+    h2 {
       font-size: 2rem;
-      color: #5f27cd;
+      color: darkorchid;
       margin-bottom: 10px;
     }
   
@@ -27,4 +27,16 @@
       margin-bottom: 20px;
     }
   }
-  
+  body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; 
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; 
+}
