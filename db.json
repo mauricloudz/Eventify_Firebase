@@ -93,12 +93,12 @@
       "nivel": 1,
       "datos": [
         {
-          "nombre": "",
-          "apellido": "",
-          "edad": "",
-          "whatsapp": "",
-          "carrera": "",
-          "sede": ""
+          "nombre": "Patricio",
+          "apellido": "Toro Fuentes",
+          "edad": 37,
+          "whatsapp": "9555555555",
+          "carrera": "Analista Programador",
+          "sede": "Alonso de Ovalle"
         }
       ]
     }

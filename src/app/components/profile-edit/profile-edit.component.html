@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Editar Perfil</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">Cerrar</ion-button>
+      <ion-button (click)="close()" color="orchid">Cerrar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -10,40 +10,40 @@
 <ion-content>
   <form [formGroup]="profileForm" (ngSubmit)="save()">
     <!-- Nombre -->
-    <ion-item>
+    <ion-item class="custom-item">
       <ion-label position="floating">Nombre</ion-label>
       <ion-input type="text" formControlName="nombre" required></ion-input>
     </ion-item>
 
     <!-- Apellido -->
-    <ion-item>
+    <ion-item class="custom-item">
       <ion-label position="floating">Apellido</ion-label>
       <ion-input type="text" formControlName="apellido" required></ion-input>
     </ion-item>
 
     <!-- Edad -->
-    <ion-item>
+    <ion-item class="custom-item">
       <ion-label position="floating">Edad</ion-label>
       <ion-input type="number" formControlName="edad" min="0" required></ion-input>
     </ion-item>
 
     <!-- Whatsapp -->
-    <ion-item>
+    <ion-item class="custom-item">
       <ion-label position="floating">Whatsapp</ion-label>
       <ion-input type="tel" formControlName="whatsapp"></ion-input>
     </ion-item>
 
     <!-- Carrera -->
-    <ion-item>
+    <ion-item class="custom-item">
       <ion-label position="floating">Carrera</ion-label>
       <ion-select placeholder="Selecciona tu carrera" formControlName="carrera">
         <ion-select-option value="Analista Programador">Analista Programador</ion-select-option>
-        <ion-select-option value="Ingeniería en Informatica">Ingeniería en Informática</ion-select-option>
+        <ion-select-option value="Ingeniería en Informática">Ingeniería en Informática</ion-select-option>
       </ion-select>
     </ion-item>
 
     <!-- Sede -->
-    <ion-item>
+    <ion-item class="custom-item">
       <ion-label position="floating">Sede</ion-label>
       <ion-select placeholder="Selecciona sede" formControlName="sede">
         <ion-select-option value="Alonso de Ovalle">Alonso de Ovalle</ion-select-option>
@@ -51,9 +51,20 @@
       </ion-select>
     </ion-item>
 
-    <!-- Botón para guardar -->
-    <ion-button expand="block" type="submit" color="primary">
-      Guardar
-    </ion-button>
+    <!-- Botones -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" type="submit" class="custom-button">
+            Guardar
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="close()" class="custom-button">
+            Cancelar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </form>
 </ion-content>
