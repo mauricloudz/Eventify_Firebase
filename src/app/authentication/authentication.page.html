@@ -28,7 +28,7 @@
 
       <a class="forgot-password" href="#">¿Olvidaste tu contraseña?</a>
 
-      <ion-button expand="block" color="primary" class="login-button" type="submit">Ingresa</ion-button>
+      <ion-button expand="block" color="primary" class="login-button" type="submit" [disabled]="!authForm.valid">Ingresa</ion-button>
 
       <div class="or-divider">
         <hr/>
