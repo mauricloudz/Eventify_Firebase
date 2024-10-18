@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { NavController } from '@ionic/angular';
 import { UserService } from '../services/user.service';
+import { NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
+import { ModalController } from '@ionic/angular';
+import { StorageService } from '../services/storage.service';
+import { Router } from '@angular/router';
 import { ProfileEditComponent } from '../components/profile-edit/profile-edit.component';
 
 @Component({
@@ -17,7 +19,9 @@ export class ProfilePage implements OnInit {
     private userService: UserService,
     private navCtrl: NavController,
     private authService: AuthService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private storageService: StorageService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -25,29 +29,25 @@ export class ProfilePage implements OnInit {
   }
 
   loadProfile() {
-    const userId = this.authService.getUserId(); // Obtener el ID del usuario logueado
+    const userId = this.authService.getUserId();
     if (userId !== null) {
       this.userService.getUser(userId).subscribe((data: any) => {
         this.profile = data.datos[0];
       });
     } else {
-      // Manejar el caso en que no hay usuario logueado
       console.error('No user logged in');
     }
   }
 
   goBack() {
-    this.navCtrl.back(); // Navega hacia atrás
+    this.navCtrl.back();
   }
-
 
   async openEditModal() {
     const modal = await this.modalController.create({
       component: ProfileEditComponent,
       componentProps: { profile: this.profile }
     });
-
-    
 
     modal.onDidDismiss().then((data) => {
       if (data.data) {
@@ -56,5 +56,10 @@ export class ProfilePage implements OnInit {
     });
 
     return await modal.present();
+  }
+
+  async logout() {
+    await this.authService.logout(); // Llamar al método logout de AuthService
+    this.router.navigate(['/login']);
   }
 }

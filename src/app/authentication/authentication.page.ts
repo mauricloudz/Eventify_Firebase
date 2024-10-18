@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service'; // Importamos AuthService
+import { StorageService } from '../services/storage.service'; // Importamos StorageService
 
 @Component({
   selector: 'app-authentication',
@@ -19,7 +20,8 @@ export class AuthenticationPage {
     private alertController: AlertController,
     private router: Router,
     private userService: UserService,
-    private authService: AuthService // Inyectamos AuthService
+    private authService: AuthService, // Inyectamos AuthService
+    private storageService: StorageService // Inyectamos StorageService
   ) {
     this.authForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -30,14 +32,15 @@ export class AuthenticationPage {
   async onSubmit() {
     if (this.authForm.valid) {
       const { email, password } = this.authForm.value;
-      this.userService.getUsers().subscribe(users => {
+      this.userService.getUsers().subscribe(async users => {
         const user = users.find(u => u.email === email);
         if (!user) {
           this.showAlert('Usuario no existe');
         } else if (user.password !== password) {
           this.showAlert('Clave incorrecta');
         } else {
-          this.authService.login(user.id); // Asegúrate de que el ID del usuario se pasa correctamente
+          this.authService.login(user.id);
+          await this.storageService.setSession({ userId: user.id });
           this.router.navigate(['/tabs/dashboard']);
         }
       });

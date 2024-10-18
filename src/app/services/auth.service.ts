@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { StorageService } from './storage.service'; // Importar StorageService
 
 @Injectable({
   providedIn: 'root'
@@ -6,17 +7,17 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   private userId: number | null = null;
 
-  constructor() {}
+  constructor(private storageService: StorageService) {} // Inyectar StorageService
 
-  login(userId: number) {
+  async login(userId: number) {
     this.userId = userId;
-    console.log(`Usuario logueado con ID: ${userId}`); // Añade un log para verificar el ID
-    // Aquí puedes añadir lógica adicional para manejar el login, como guardar tokens, etc.
+    console.log(`Usuario logueado con ID: ${userId}`);
+    await this.setSession(userId); // Guardar el estado de la sesión
   }
 
-  logout() {
+  async logout() {
     this.userId = null;
-    // Aquí puedes añadir lógica adicional para manejar el logout, como eliminar tokens, etc.
+    await this.storageService.clearSession(); // Eliminar el estado de la sesión
   }
 
   getUserId(): number | null {
@@ -25,5 +26,13 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return this.userId !== null;
+  }
+
+  private async setSession(userId: number) {
+    await this.storageService.setSession({ userId }); // Guardar el estado de la sesión
+  }
+
+  setUserId(userId: number) {
+    this.userId = userId; // Establecer el ID de usuario
   }
 }
