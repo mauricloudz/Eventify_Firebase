@@ -1,26 +1,34 @@
 import { Injectable } from '@angular/core';
-import { StorageService } from './storage.service'; // Importar StorageService
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private userId: number | null = null;
+  private userId: string | null = null;
 
-  constructor(private storageService: StorageService) {} // Inyectar StorageService
+  constructor(private afAuth: AngularFireAuth, private storageService: StorageService) { }
 
-  async login(userId: number) {
-    this.userId = userId;
-    console.log(`Usuario logueado con ID: ${userId}`);
-    await this.setSession(userId); // Guardar el estado de la sesión
+  async login(email: string, password: string): Promise<void> {
+    try {
+      const userCredential = await this.afAuth.signInWithEmailAndPassword(email, password);
+      this.userId = userCredential.user?.uid || null;
+      console.log(`Usuario logueado con ID: ${this.userId}`);
+      await this.setSession(this.userId);
+    } catch (error) {
+      console.error('Error logging in', error);
+      throw error;
+    }
   }
 
-  async logout() {
+  async logout(): Promise<void> {
     this.userId = null;
-    await this.storageService.clearSession(); // Eliminar el estado de la sesión
+    await this.afAuth.signOut();
+    await this.storageService.clearSession();
   }
 
-  getUserId(): number | null {
+  getUserId(): string | null {
     return this.userId;
   }
 
@@ -28,11 +36,11 @@ export class AuthService {
     return this.userId !== null;
   }
 
-  private async setSession(userId: number) {
-    await this.storageService.setSession({ userId }); // Guardar el estado de la sesión
+  private async setSession(userId: string): Promise<void> {
+    await this.storageService.setSession({ userId });
   }
 
-  setUserId(userId: number) {
-    this.userId = userId; // Establecer el ID de usuario
+  setUserId(userId: string): void {
+    this.userId = userId;
   }
 }

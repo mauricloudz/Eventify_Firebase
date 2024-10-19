@@ -19,6 +19,9 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { StorageService } from './services/storage.service';
 import { DatabaseService } from './services/database.service';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [TabsComponent, AppComponent, CreateEventComponent, ProfileEditComponent], 
   imports: [
@@ -29,7 +32,8 @@ import { DatabaseService } from './services/database.service';
     FormsModule,
     ReactiveFormsModule,
     // Configurar IonicStorageModule
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebaseConfig) // Inicializar Firebase
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

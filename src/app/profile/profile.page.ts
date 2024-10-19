@@ -32,7 +32,7 @@ export class ProfilePage implements OnInit {
     const userId = this.authService.getUserId();
     if (userId !== null) {
       this.userService.getUser(userId).subscribe((data: any) => {
-        this.profile = data.datos[0];
+        this.profile = data?.datos[0] || {};
       });
     } else {
       console.error('No user logged in');

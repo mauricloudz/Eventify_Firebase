@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { FirebaseService } from '../services/firebase.service';
+import { StorageService } from '../services/storage.service';
 import { UserService } from '../services/user.service';
-import { AuthService } from '../services/auth.service'; // Importamos AuthService
-import { StorageService } from '../services/storage.service'; // Importamos StorageService
+import { AuthService } from '../services/auth.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-authentication',
@@ -12,38 +14,41 @@ import { StorageService } from '../services/storage.service'; // Importamos Stor
   styleUrls: ['./authentication.page.scss'],
 })
 export class AuthenticationPage {
-
   authForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
     private alertController: AlertController,
     private router: Router,
     private userService: UserService,
     private authService: AuthService, // Inyectamos AuthService
-    private storageService: StorageService // Inyectamos StorageService
+    private storageService: StorageService, // Inyectamos StorageService
+    private firebaseSvc: FirebaseService // Inyectamos FirebaseService
   ) {
-    this.authForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(4)]]
+    this.authForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(4)])
     });
   }
 
   async onSubmit() {
     if (this.authForm.valid) {
       const { email, password } = this.authForm.value;
-      this.userService.getUsers().subscribe(async users => {
-        const user = users.find(u => u.email === email);
-        if (!user) {
-          this.showAlert('Usuario no existe');
-        } else if (user.password !== password) {
-          this.showAlert('Clave incorrecta');
-        } else {
-          this.authService.login(user.id);
-          await this.storageService.setSession({ userId: user.id });
+      try {
+        const userCredential = await this.firebaseSvc.signIn(this.authForm.value as User);
+        const user = userCredential.user;
+        if (user) {
+          await this.storageService.setSession({ userId: user.uid });
           this.router.navigate(['/tabs/dashboard']);
         }
-      });
+      } catch (error) {
+        if (error.code === 'auth/user-not-found') {
+          this.showAlert('Usuario no existe');
+        } else if (error.code === 'auth/wrong-password') {
+          this.showAlert('Clave incorrecta');
+        } else {
+          this.showAlert('Error de autenticación');
+        }
+      }
     }
   }
 
