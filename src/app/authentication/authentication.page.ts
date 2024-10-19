@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { FirebaseService } from '../services/firebase.service';
 import { StorageService } from '../services/storage.service';
-import { UserService } from '../services/user.service';
-import { AuthService } from '../services/auth.service';
 import { User } from '../models/user.model';
+import { UtilsService } from '../services/utils.service';
 
 @Component({
   selector: 'app-authentication',
@@ -19,10 +18,9 @@ export class AuthenticationPage {
   constructor(
     private alertController: AlertController,
     private router: Router,
-    private userService: UserService,
-    private authService: AuthService, // Inyectamos AuthService
     private storageService: StorageService, // Inyectamos StorageService
-    private firebaseSvc: FirebaseService // Inyectamos FirebaseService
+    private firebaseSvc: FirebaseService, // Inyectamos FirebaseService
+    private utilsSvc: UtilsService
   ) {
     this.authForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -32,7 +30,9 @@ export class AuthenticationPage {
 
   async onSubmit() {
     if (this.authForm.valid) {
-      const { email, password } = this.authForm.value;
+      const loading = await this.utilsSvc.loading();
+      await loading.present();
+
       try {
         const userCredential = await this.firebaseSvc.signIn(this.authForm.value as User);
         const user = userCredential.user;
@@ -47,7 +47,14 @@ export class AuthenticationPage {
           this.showAlert('Clave incorrecta');
         } else {
           this.showAlert('Error de autenticación');
+          this.utilsSvc.presentToast({
+            message: error.message,
+            duration: 3000,
+            color: 'primary'
+          })
         }
+      } finally {
+        loading.dismiss();
       }
     }
   }
