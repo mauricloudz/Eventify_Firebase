@@ -74,14 +74,22 @@ h3 {
 }
 
 .fab-button {
-  background: linear-gradient(45deg, #D4A5FF, #FF77FF, #B583FF);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
+  --background: linear-gradient(45deg, #D4A5FF, #FF77FF, #B583FF) !important; 
+  color: white; 
+  border-radius: 50%; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+
+  ion-icon {
+    font-size: 2rem; 
+  }
+
+  &:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+  }
 }
 
-.fab-button:hover {
-  transform: scale(1.1);
-}
 
 .category-button {
   --background: linear-gradient(45deg, #D4A5FF, #FF77FF, #B583FF);

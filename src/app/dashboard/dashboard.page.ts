@@ -58,17 +58,6 @@ export class DashboardPage implements OnInit {
     }
   }
 
-  // Método para abrir el modal con el componente de creación de eventos
-  async openCreateEventModal() {
-    setTimeout(async () => {
-      const modal = await this.modalController.create({
-        component: CreateEventComponent,
-        cssClass: 'create-event-modal'
-      });
-      await modal.present();
-    }, 300);
-  }
-
   openCategoryDetails(categoryName: string) {
     this.navCtrl.navigateForward(`/category-details/${categoryName}`);
   }

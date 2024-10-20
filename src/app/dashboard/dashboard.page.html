@@ -13,7 +13,7 @@
 <!-- Sección: Categorías -->
 <ion-content [fullscreen]="true"> 
   <ion-text>
-    <h6 *ngIf="profile.nombre; else noProfile">Hola, {{ profile.nombre }}, revisa los nuevos eventos de nuestra comunidad</h6>
+    <h6 *ngIf="profile.nombre; else noProfile">¡Hola {{ profile.nombre }}!, revisa los nuevos eventos de nuestra comunidad</h6>
     <ng-template #noProfile>
       <h6>Hola, recuerda registrar y/o modificar tus datos en el perfil de usuario</h6>
     </ng-template>
@@ -89,8 +89,3 @@
 </ion-content>
 
 
-<ion-fab slot="fixed" vertical="bottom" horizontal="end">
-  <ion-fab-button size="large" color="tertiary" class="fab-button" (click)="openCreateEventModal()">
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
