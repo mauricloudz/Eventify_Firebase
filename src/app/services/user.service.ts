@@ -1,30 +1,44 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { User } from '../models/user.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  constructor(private afAuth: AngularFireAuth, private firestore: AngularFirestore) {}
 
-  private apiUrl = 'http://localhost:3000/users'; 
-
-  constructor(private http: HttpClient) { }
-
-  register(userData: { username: string, email: string, password: string }): Observable<any> {
-    return this.http.post(this.apiUrl, userData);
+  register(user: User): Promise<void> {
+    return this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
+      .then(userCredential => {
+        const userId = userCredential.user?.uid;
+        return this.firestore.collection('users').doc(userId).set({
+          username: user.username,
+          email: user.email,
+          nivel: 1,
+          datos: [{
+            nombre: "",
+            apellido: "",
+            edad: "",
+            whatsapp: "",
+            carrera: "",
+            sede: ""
+          }]
+        });
+      });
   }
 
-  getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  getUsers(): Observable<User[]> {
+    return this.firestore.collection<User>('users').valueChanges();
   }
 
-  getUser(userId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${userId}`);
+  getUser(userId: string): Observable<User> {
+    return this.firestore.collection('users').doc<User>(userId).valueChanges();
   }
 
-  updateUser(userId: number, datos: { nombre: string, apellido: string, edad: string, whatsapp: string, carrera: string, sede: string }): Observable<any> {
-    return this.http.patch<any>(`${this.apiUrl}/${userId}`, { datos: [datos] });
+  updateUser(userId: string, datos: any): Promise<void> {
+    return this.firestore.collection('users').doc(userId).update({ datos: [datos] });
   }
-
 }

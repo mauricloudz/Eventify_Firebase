@@ -37,12 +37,11 @@ export class ProfileEditComponent implements OnInit {
   }
 
   async save() {
-    const userId = await this.authService.getUserId();
-  
-    if (userId !== null && this.profileForm.valid) {
-      const datos = this.profileForm.value;
-      this.userService.updateUser(userId, datos).subscribe({
-        next: async (response) => {
+    if (this.profileForm.valid) {
+      const userId = this.authService.getUserId();
+      if (userId !== null) {
+        const datos = this.profileForm.value;
+        this.userService.updateUser(userId, datos).then(async (response) => {
           console.log('Usuario actualizado', response);
           const alert = await this.alertController.create({
             header: 'Éxito',
@@ -51,11 +50,12 @@ export class ProfileEditComponent implements OnInit {
           });
           await alert.present();
           this.modalController.dismiss(datos); 
-        },
-        error: (error) => {
+        }).catch((error) => {
           console.error('Error al actualizar el usuario', error);
-        }
-      });
+        });
+      } else {
+        console.error('No hay usuario logueado');
+      }
     } else {
       console.error('No se encontró un userId válido o el formulario es inválido');
     }
