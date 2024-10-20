@@ -10,12 +10,6 @@
       margin: 0 auto;
     }
   
-    .not-found-image {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-    }
-  
     h2 {
       font-size: 2rem;
       color: darkorchid;
@@ -43,8 +37,7 @@ p {
 .not-found-image {
   max-width: 100%;
   height: auto;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  margin-bottom: 20px; 
   border-radius: 12px; 
   transition: transform 0.3s ease; 
 }

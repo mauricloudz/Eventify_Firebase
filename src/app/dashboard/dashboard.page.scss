@@ -95,4 +95,15 @@ h3 {
       color: #36204a;
   }
 }
+
+.section-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, #B583FF, #FF77FF, #D4A5FF);
+  margin: 20px 0;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 }
