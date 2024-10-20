@@ -1,4 +1,5 @@
 .top {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,6 +17,7 @@ ion-searchbar {
   --background: white;
   --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  margin-top: 20px;
   margin: 10px;
 }
 .category-row {
@@ -72,24 +74,6 @@ h3 {
     box-shadow: 0 8px 20px orchid (0, 0, 0, 0.3); 
   }
 }
-
-.fab-button {
-  --background: linear-gradient(45deg, #D4A5FF, #FF77FF, #B583FF) !important; 
-  color: white; 
-  border-radius: 50%; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  transition: transform 0.3s ease, box-shadow 0.3s ease; 
-
-  ion-icon {
-    font-size: 2rem; 
-  }
-
-  &:hover {
-    transform: scale(1.1); 
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
-  }
-}
-
 
 .category-button {
   --background: linear-gradient(45deg, #D4A5FF, #FF77FF, #B583FF);

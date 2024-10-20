@@ -1,10 +1,10 @@
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
-import { CreateEventComponent } from '../create-event/create-event.component';
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,6 +27,7 @@ export class DashboardPage implements OnInit {
     private navCtrl: NavController,
     private userService: UserService,
     private authService: AuthService,
+    private router: Router,
   ) {
     addIcons({ add });
   }
