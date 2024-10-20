@@ -7,6 +7,13 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./create-event.component.scss'],
 })
 export class CreateEventComponent {
+    categories = [
+      { name: 'Talleres' },
+      { name: 'Desafíos' },
+      { name: 'Mentorías' },
+      { name: 'Charlas' },
+      { name: 'Stands' },
+    ];
 
   constructor(private modalController: ModalController) { }
 
