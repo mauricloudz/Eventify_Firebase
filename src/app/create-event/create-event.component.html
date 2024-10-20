@@ -54,7 +54,7 @@
     <!-- Fecha del Evento -->
     <ion-item>
       <ion-label position="floating">Fecha del Evento</ion-label>
-      <ion-datetime formControlName="fechaActividad" display-format="DD/MM/YYYY"></ion-datetime>
+      <ion-datetime [firstDayOfWeek]="1" formControlName="fechaActividad" display-format="DD/MM/YYYY"></ion-datetime>
     </ion-item>
 
     <!-- Dependencia -->
@@ -66,13 +66,13 @@
     <!-- Horario Inicio -->
     <ion-item>
       <ion-label position="floating">Horario Inicio</ion-label>
-      <ion-datetime formControlName="horarioInicio" display-format="HH:mm"></ion-datetime>
+      <ion-datetime [firstDayOfWeek]="1" display-format="HH:mm" display-format="HH:mm" formControlName="horarioInicio" required></ion-datetime>
     </ion-item>
 
     <!-- Horario Término -->
     <ion-item>
       <ion-label position="floating">Horario Término</ion-label>
-      <ion-datetime formControlName="horarioTermino" display-format="HH:mm"></ion-datetime>
+      <ion-datetime [firstDayOfWeek]="1" display-format="HH:mm" picker-format="HH:mm" formControlName="horarioTermino" required></ion-datetime>
     </ion-item>
 
     <!-- Modalidad -->
