@@ -7,60 +7,40 @@
       </ion-avatar>
     </ion-buttons>
   </ion-toolbar>
-  <!-- Buscador -->
   <ion-searchbar placeholder="Buscar" showCancelButton="focus"></ion-searchbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
-  <!-- Sección: Categorías -->
+<!-- Sección: Categorías -->
+<ion-content [fullscreen]="true"> 
   <ion-text>
-    <h2>Categorías</h2>
+    <h6 *ngIf="profile.nombre; else noProfile">Hola, {{ profile.nombre }}, revisa los nuevos eventos de nuestra comunidad</h6>
+    <ng-template #noProfile>
+      <h6>Hola, recuerda registrar y/o modificar tus datos en el perfil de usuario</h6>
+    </ng-template>
   </ion-text>
-  <ion-grid>
-    <ion-row class="category-row">
-      <ion-col size="auto">
-        <ion-button color="light" fill="solid" shape="round" class="category-button">
-          <ion-icon slot="icon-only" name="construct-outline"></ion-icon>
-        </ion-button>
-        <p>Talleres</p>
-      </ion-col>
-      <ion-col size="auto">
-        <ion-button color="light" fill="solid" shape="round" class="category-button">
-          <ion-icon slot="icon-only" name="ribbon-outline"></ion-icon>
-        </ion-button>
-        <p>Desafíos</p>
-      </ion-col>
-      <ion-col size="auto">
-        <ion-button color="light" fill="solid" shape="round" class="category-button">
-          <ion-icon slot="icon-only" name="people-circle-outline"></ion-icon>
-        </ion-button>
-        <p>Mentorías</p>
-      </ion-col>
-      <ion-col size="auto">
-        <ion-button color="light" fill="solid" shape="round" class="category-button">
-          <ion-icon slot="icon-only" name="mic-outline"></ion-icon>
-        </ion-button>
-        <p>Charlas</p>
-      </ion-col>
-      <ion-col size="auto">
-        <ion-button color="light" fill="solid" shape="round" class="category-button">
-          <ion-icon slot="icon-only" name="megaphone-outline"></ion-icon>
-        </ion-button>
-        <p>Stands</p>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
   
+<ion-text>
+  <h3>Categorías</h3>
+</ion-text>
+<ion-grid>
+  <ion-row class="category-row">
+    <ion-col size="auto" *ngFor="let category of categories" (click)="openCategoryDetails(category.name)">
+      <ion-button class="category-button">
+        <ion-icon slot="icon-only" [name]="category.icon"></ion-icon>
+      </ion-button>
+      <p>{{ category.name }}</p>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
-  <!-- Sección: Descubre nuevos eventos -->
-  <ion-text>
-    <h2>Descubre nuevos eventos</h2>
+
+  <ion-text class="section-title">
+    <h3>Descubre nuevos eventos</h3>
   </ion-text>
   <ion-grid>
     <ion-row>
       <ion-col size="6">
-        <ion-card>
+        <ion-card class="event-card">
           <ion-img src="assets/img/mentorias.jpg"></ion-img>
           <ion-card-content>
             Mentorías
@@ -68,7 +48,7 @@
         </ion-card>
       </ion-col>
       <ion-col size="6">
-        <ion-card>
+        <ion-card class="event-card">
           <ion-img src="assets/img/Charlas.jpg"></ion-img>
           <ion-card-content>
             Charlas
@@ -78,15 +58,13 @@
     </ion-row>
   </ion-grid>
 
-
-  <!-- Sección: Eventos Recomendados -->
-  <ion-text>
-    <h2>Eventos Recomendados</h2>
+  <ion-text class="section-title">
+    <h3>Eventos Recomendados</h3>
   </ion-text>
   <ion-grid>
     <ion-row>
       <ion-col size="6">
-        <ion-card>
+        <ion-card class="event-card">
           <ion-img src="assets/img/Talleres.jpg"></ion-img>
           <ion-card-content>
             Consolida tus conocimientos
@@ -94,7 +72,7 @@
         </ion-card>
       </ion-col>
       <ion-col size="6">
-        <ion-card>
+        <ion-card class="event-card">
           <ion-img src="assets/img/Desafios.jpg"></ion-img>
           <ion-card-content>
             Atrévete
@@ -104,9 +82,9 @@
     </ion-row>
   </ion-grid>
 </ion-content>
-  
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button size="large" color="tertiary" (click)="openCreateEventModal()">
-      <ion-icon name="add" size="large"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button size="large" color="tertiary" class="fab-button" (click)="openCreateEventModal()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

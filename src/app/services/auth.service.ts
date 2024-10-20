@@ -20,10 +20,13 @@ export class AuthService {
     await this.storageService.clearSession(); // Eliminar el estado de la sesión
   }
 
-  getUserId(): number | null {
-    return this.userId;
+  async getUserId(): Promise<number | null> {
+    const session = await this.storageService.getSession();
+    if (session && session.userId) {
+      return session.userId;
+    }
+    return null;
   }
-
   isLoggedIn(): boolean {
     return this.userId !== null;
   }

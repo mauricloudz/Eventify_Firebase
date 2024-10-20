@@ -47,7 +47,16 @@ const routes: Routes = [
     path: 'not-found',
     loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundPageModule)
   },
-  { path: '**', redirectTo: 'not-found' }
+  { path: '**', redirectTo: 'not-found' },
+  {
+    path: 'category-details',
+    loadChildren: () => import('./category-details/category-details.module').then( m => m.CategoryDetailsPageModule)
+  },
+  {
+    path: 'category-details/:categoryName',
+    loadChildren: () => import('./category-details/category-details.module').then(m => m.CategoryDetailsPageModule)
+  }
+
 ];
 
 @NgModule({

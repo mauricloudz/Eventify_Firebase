@@ -37,33 +37,30 @@ export class ProfileEditComponent implements OnInit {
   }
 
   async save() {
-    if (this.profileForm.valid) {
-      const userId = this.authService.getUserId();
-      if (userId !== null) {
-        const datos = this.profileForm.value;
-        this.userService.updateUser(userId, datos).subscribe({
-          next: async (response) => {
-            console.log('Usuario actualizado', response);
-            const alert = await this.alertController.create({
-              header: 'Éxito',
-              message: 'Datos actualizados exitosamente.',
-              buttons: ['OK']
-            });
-            await alert.present();
-            this.modalController.dismiss(datos); 
-          },
-          error: (error) => {
-            console.error('Error al actualizar el usuario', error);
-          }
-        });
-      } else {
-        console.error('No hay usuario logueado');
-      }
+    const userId = await this.authService.getUserId();
+  
+    if (userId !== null && this.profileForm.valid) {
+      const datos = this.profileForm.value;
+      this.userService.updateUser(userId, datos).subscribe({
+        next: async (response) => {
+          console.log('Usuario actualizado', response);
+          const alert = await this.alertController.create({
+            header: 'Éxito',
+            message: 'Datos actualizados exitosamente.',
+            buttons: ['OK']
+          });
+          await alert.present();
+          this.modalController.dismiss(datos); 
+        },
+        error: (error) => {
+          console.error('Error al actualizar el usuario', error);
+        }
+      });
     } else {
-      console.error('Formulario inválido');
+      console.error('No se encontró un userId válido o el formulario es inválido');
     }
   }
-
+  
   close() {
     this.modalController.dismiss(); // Cerramos el modal sin pasar datos
   }

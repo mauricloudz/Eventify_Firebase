@@ -28,16 +28,29 @@ export class ProfilePage implements OnInit {
     this.loadProfile();
   }
 
-  loadProfile() {
-    const userId = this.authService.getUserId();
+  async loadProfile() {
+    const userId = await this.authService.getUserId(); 
+  
     if (userId !== null) {
-      this.userService.getUser(userId).subscribe((data: any) => {
-        this.profile = data.datos[0];
-      });
+      this.userService.getUser(userId).subscribe(
+        (data: any) => {
+          if (data && data.datos && data.datos.length > 0) {
+            this.profile = data.datos[0];
+          } else {
+            this.profile = {};
+          }
+        },
+        (error: any) => {
+          console.error('Error al cargar el perfil', error);
+          this.profile = null;
+        }
+      );
     } else {
-      console.error('No user logged in');
+      console.error('No se encontró un userId válido');
+      this.profile = {};
     }
   }
+  
 
   goBack() {
     this.navCtrl.back();
