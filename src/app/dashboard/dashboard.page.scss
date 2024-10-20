@@ -71,7 +71,7 @@ h3 {
   --background: linear-gradient(45deg, #D4A5FF, #FF77FF, #B583FF);
   --background-activated: linear-gradient(45deg, #D4A5FF, #FF77FF, #B583FF); 
   --background-hover: linear-gradient(45deg, #D4A5FF, #FF77FF, #B583FF); 
-  --border-radius: 50% !important;
+  border-radius: 75% !important;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   width: 60px;
   height: 60px;
@@ -92,7 +92,7 @@ h3 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     --background: linear-gradient(45deg, #D4A5FF, #FF77FF, #B583FF); 
     ion-icon {
-      color: #331c48;
+      color: #36204a;
   }
 }
 }
