@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -19,7 +19,8 @@ export class CreateEventComponent implements OnInit{
 
   constructor(
     private modalController: ModalController,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastController: ToastController,
   ) { }
 
   ngOnInit(){
@@ -34,18 +35,28 @@ export class CreateEventComponent implements OnInit{
   }
 
   // Método para manejar el envío del formulario
-  onSubmit() {
+  async onSubmit() {
     if (this.eventForm.valid) {
       console.log('Evento creado', this.eventForm.value);
-      alert('Evento creado con éxito');
+      await this.showToast('Evento creado con éxito');
       this.closeModal();
     } else {
-      alert('Por favor, completa todos los campos.');
+      await this.showToast('Por favor, completa todos los campos.');
     }
   }
 
   // Método para cerrar el modal
   closeModal() {
     this.modalController.dismiss();
+  }
+
+  // Método para mostrar un toast
+  async showToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000, // El toast se cierra automáticamente después de 2 segundos
+      position: 'bottom'
+    });
+    await toast.present();
   }
 }

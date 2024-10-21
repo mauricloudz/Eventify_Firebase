@@ -39,9 +39,13 @@
     <ion-item>
       <ion-label position="floating">Tipo de Actividad</ion-label>
       <ion-select formControlName="tipoActividad" required>
-        <ion-select-option *ngFor="let category of categories" [value]="category.name">
-          {{ category.name }}
-        </ion-select-option>
+        <ion-select-option value="Desafios">Desafíos</ion-select-option>        
+        <ion-select-option value="Encuentro">Encuentro</ion-select-option>
+        <ion-select-option value="Charlas">Charlas</ion-select-option>
+        <ion-select-option value="Mentorias">Mentorías</ion-select-option>        
+        <ion-select-option value="Stands">Stands</ion-select-option>
+        <ion-select-option value="Talleres">Talleres</ion-select-option>
+        <ion-select-option value="Visita">Visita a Colegio</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -88,7 +92,7 @@
     <!-- Docente Representante -->
     <ion-item>
       <ion-label position="floating">Docente Representante</ion-label>
-      <ion-input type="text" formControlName="docenteRepresentante" required></ion-input>
+      <ion-input type="text" formControlName="docenteRepresentante"></ion-input>
     </ion-item>
 
     <!-- Invitados y/o Docentes de apoyo -->
@@ -130,13 +134,13 @@
     <!-- Asistentes Presencial -->
     <ion-item>
       <ion-label position="floating">Asistentes Presencial</ion-label>
-      <ion-input type="number" formControlName="asistentesPresencial" required></ion-input>
+      <ion-input type="number" formControlName="asistentesPresencial"></ion-input>
     </ion-item>
 
     <!-- Asistentes Online -->
     <ion-item>
       <ion-label position="floating">Asistentes Online</ion-label>
-      <ion-input type="number" formControlName="asistentesOnline" required></ion-input>
+      <ion-input type="number" formControlName="asistentesOnline"></ion-input>
     </ion-item>
 
     <!-- Enlace/s a publicación -->
