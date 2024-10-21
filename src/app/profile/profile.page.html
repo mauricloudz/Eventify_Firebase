@@ -5,6 +5,23 @@
 </ion-header>
 
 <ion-content>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" class="ion-text-center">
+        <ion-avatar>
+          <img *ngIf="profile && profile.profilePhoto; else defaultImage" [src]="profile.profilePhoto" alt="Foto de perfil">
+          <ng-template #defaultImage>
+            <img src="assets/img/profile.png" alt="Foto de perfil por defecto">
+          </ng-template>
+        </ion-avatar>
+        <ion-button fill="clear" color="secondary" class="camera-button" (click)="takePhoto()">
+          <ion-icon name="camera-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-card>
     <ion-card-header>
       <ion-card-title>{{ profile.nombre }} {{ profile.apellido }}</ion-card-title>

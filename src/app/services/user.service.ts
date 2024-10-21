@@ -24,7 +24,8 @@ export class UserService {
             edad: "",
             whatsapp: "",
             carrera: "",
-            sede: ""
+            sede: "",
+            profilePhoto: ""
           }]
         });
       });
@@ -39,6 +40,8 @@ export class UserService {
   }
 
   updateUser(userId: string, datos: any): Promise<void> {
-    return this.firestore.collection('users').doc(userId).update({ datos: [datos] });
+    return this.firestore.collection('users').doc(userId).update(datos);
   }
+
+  
 }

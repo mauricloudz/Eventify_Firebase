@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { ModalController, AlertController } from '@ionic/angular';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-profile-edit',
@@ -18,7 +19,8 @@ export class ProfileEditComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private modalController: ModalController, 
-    private alertController: AlertController 
+    private alertController: AlertController,
+    private utilsSvc: UtilsService
   ) {
     this.profileForm = this.formBuilder.group({
       nombre: ['', Validators.required],
@@ -26,7 +28,8 @@ export class ProfileEditComponent implements OnInit {
       edad: ['', Validators.required],
       whatsapp: ['', Validators.required],
       carrera: ['', Validators.required],
-      sede: ['', Validators.required]
+      sede: ['', Validators.required],
+      profilePhoto: ['']
     });
   }
 
@@ -38,10 +41,13 @@ export class ProfileEditComponent implements OnInit {
 
   async save() {
     if (this.profileForm.valid) {
+      const loading = await this.utilsSvc.loading();
+      await loading.present();
       const userId = this.authService.getUserId();
       if (userId !== null) {
         const datos = this.profileForm.value;
-        this.userService.updateUser(userId, datos).then(async (response) => {
+        this.userService.updateUser(userId, { datos: [datos] }).then(async (response) => {
+          loading.dismiss();
           console.log('Usuario actualizado', response);
           const alert = await this.alertController.create({
             header: 'Éxito',

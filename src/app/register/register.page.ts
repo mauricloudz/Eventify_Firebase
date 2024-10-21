@@ -50,7 +50,8 @@ export class RegisterPage {
           edad: "",
           whatsapp: "",
           carrera: "",
-          sede: ""
+          sede: "",
+          profilePhoto: ""
         }] // Array vacío por defecto
       };
 
@@ -106,12 +107,14 @@ export class RegisterPage {
           edad: "",
           whatsapp: "",
           carrera: "",
-          sede: ""
+          sede: "",
+          profilePhoto: ""
         }] // Array vacío por defecto
       };
 
       let path = `users/${uid}`;
       delete this.registerForm.value.password;
+      delete this.registerForm.value.confirmPassword;
 
       try {
         await this.firebaseSvc.setDocument(path, this.registerForm.value);

@@ -11,5 +11,6 @@ export interface User {
         whatsapp: string,
         carrera: string,
         sede: string
+        profilePhoto: string;
     }]
 }

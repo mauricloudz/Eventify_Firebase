@@ -3,9 +3,11 @@ import { UserService } from '../services/user.service';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { ModalController } from '@ionic/angular';
-import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { ProfileEditComponent } from '../components/profile-edit/profile-edit.component';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { FirebaseService } from '../services/firebase.service'; // Importa FirebaseService
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -14,14 +16,15 @@ import { ProfileEditComponent } from '../components/profile-edit/profile-edit.co
 })
 export class ProfilePage implements OnInit {
   profile: any = {};
+  profileImage: any;
 
   constructor(
     private userService: UserService,
     private navCtrl: NavController,
     private authService: AuthService,
     private modalController: ModalController,
-    private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private firebaseService: FirebaseService // Inyecta FirebaseService
   ) {}
 
   ngOnInit() {
@@ -40,7 +43,37 @@ export class ProfilePage implements OnInit {
       this.profile = {};
     }
   }
+
   
+
+  async takePhoto() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Prompt // Permite al usuario elegir entre la cámara y la galería
+    });
+
+    if (image) {
+      const userId = await this.authService.getUserId();
+      const photoUrl = await this.firebaseService.uploadImage(image.dataUrl, `profilePhotos/${userId}.jpg`);
+      this.updateProfilePhoto(userId, photoUrl);
+    }
+  }
+
+  updateProfilePhoto(userId: string, photoUrl: string) {
+    this.userService.getUser(userId).subscribe((user: User) => {
+      if (user && user.datos && user.datos.length > 0) {
+        // Clona el objeto datos para evitar mutaciones no deseadas
+        const updatedDatos = { ...user.datos[0], profilePhoto: photoUrl };
+  
+        // Haz un patch con el objeto completo de datos
+        this.userService.updateUser(userId, { datos: [updatedDatos] }).then(() => {
+          this.profile.profilePhoto = photoUrl;
+        });
+      }
+    });
+  }
 
   goBack() {
     this.navCtrl.back();
