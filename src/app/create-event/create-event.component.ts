@@ -25,32 +25,33 @@ export class CreateEventComponent implements OnInit{
 
   ngOnInit() {
     this.eventForm = this.formBuilder.group({
-      sede: ['', Validators.required],
-      tipoActividad: ['', Validators.required],
-      tituloEvento: ['', Validators.required],
-      fechaActividad: ['', Validators.required],
-      horarioInicio: ['', Validators.required],
-      horarioTermino: ['', Validators.required],
-      dependencia: ['', Validators.required],
-      modalidad: ['', Validators.required],
-      docenteRepresentante: [''],
-      invitados: [''],
-      directorParticipante: [''],
-      liderParticipante: [''],
-      subliderParticipante: [''],
-      embajadores: [''],
-      inscritos: [''],
-      asistentesPresencial: [''],
-      asistentesOnline: [''],
-      enlaces: ['']
+      sede: ['', Validators.required],  
+      tipoActividad: ['', Validators.required],  
+      tituloEvento: ['', Validators.required],  
+      fechaActividad: ['', Validators.required],  
+      horarioInicio: ['', Validators.required],  
+      horarioTermino: ['', Validators.required],  
+      dependencia: ['', Validators.required],  
+      modalidad: ['', Validators.required],  
+      docenteRepresentante: [''],  
+      invitados: [''],  
+      directorParticipante: [''],  
+      liderParticipante: [''], 
+      subliderParticipante: [''],  
+      embajadores: [''],  
+      inscritos: [''],  
+      asistentesPresencial: [''],  
+      asistentesOnline: [''],  
+      enlaces: ['']  
     });
   }
 
   // Método para manejar el envío del formulario
   async onSubmit() {
+    console.log("onSubmit triggered");
     console.log (this.eventForm.value);
     console.log (this.eventForm.valid);
-    
+
     if (this.eventForm.valid) {
       console.log('Evento creado', this.eventForm.value);
       await this.showToast('Evento creado con éxito');
