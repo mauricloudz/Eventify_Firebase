@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, ToastController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-create-event',
@@ -21,6 +22,7 @@ export class CreateEventComponent implements OnInit{
     private modalController: ModalController,
     private formBuilder: FormBuilder,
     private toastController: ToastController,
+    private firebaseService: FirebaseService
   ) { }
 
   ngOnInit() {
@@ -53,6 +55,9 @@ export class CreateEventComponent implements OnInit{
     console.log (this.eventForm.valid);
 
     if (this.eventForm.valid) {
+      await this.firebaseService.createEvent(this.eventForm.value);
+
+
       console.log('Evento creado', this.eventForm.value);
       await this.showToast('Evento creado con éxito');
       this.closeModal();

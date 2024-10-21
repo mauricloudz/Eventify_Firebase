@@ -33,6 +33,10 @@ export class FirebaseService {
     return updateProfile(getAuth().currentUser, { displayName });
   }
 
+  deleteUser() {
+    return getAuth().currentUser.delete();
+  }
+
   signOut() {
     return this.auth.signOut();
   }
