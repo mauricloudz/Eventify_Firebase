@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { CreateEventComponent } from './create-event/create-event.component';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule} from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicRouteStrategy } from '@ionic/angular';
 
@@ -20,6 +20,7 @@ import { StorageService } from './services/storage.service';
 import { DatabaseService } from './services/database.service';
 
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -33,7 +34,8 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     // Configurar IonicStorageModule
     IonicStorageModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebaseConfig) // Inicializar Firebase
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule // Inicializar Firebase
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

@@ -37,6 +37,11 @@ const routes: Routes = [
         canActivate: [AuthGuard] // Protegemos la ruta 'profile' con AuthGuard
       },
       {
+        path: 'news',
+        loadChildren: () => import('./news/news.module').then( m => m.NewsPageModule),
+        canActivate: [AuthGuard]
+      },
+      {
         path: '',
         redirectTo: 'dashboard',
         pathMatch: 'full'
@@ -56,6 +61,7 @@ const routes: Routes = [
     path: 'category-details/:categoryName',
     loadChildren: () => import('./category-details/category-details.module').then(m => m.CategoryDetailsPageModule)
   }
+
 
 ];
 
