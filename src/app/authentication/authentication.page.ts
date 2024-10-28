@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { FirebaseService } from '../services/firebase.service';
-import { StorageService } from '../services/storage.service';
-import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
 import { UtilsService } from '../services/utils.service';
 
 @Component({
@@ -18,8 +16,7 @@ export class AuthenticationPage {
   constructor(
     private alertController: AlertController,
     private router: Router,
-    private storageService: StorageService, // Inyectamos StorageService
-    private firebaseSvc: FirebaseService, // Inyectamos FirebaseService
+    private authService: AuthService, // Inyectamos AuthService
     private utilsSvc: UtilsService
   ) {
     this.authForm = new FormGroup({
@@ -34,12 +31,8 @@ export class AuthenticationPage {
       await loading.present();
 
       try {
-        const userCredential = await this.firebaseSvc.signIn(this.authForm.value as User);
-        const user = userCredential.user;
-        if (user) {
-          await this.storageService.setSession({ userId: user.uid });
-          this.router.navigate(['/tabs/dashboard']);
-        }
+        await this.authService.login(this.authForm.value.email, this.authForm.value.password);
+        this.router.navigate(['/tabs/dashboard']);
       } catch (error) {
         if (error.code === 'auth/user-not-found') {
           this.showAlert('Usuario no existe');
@@ -51,7 +44,7 @@ export class AuthenticationPage {
             message: error.message,
             duration: 3000,
             color: 'primary'
-          })
+          });
         }
       } finally {
         loading.dismiss();

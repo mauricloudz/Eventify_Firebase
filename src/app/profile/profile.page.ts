@@ -32,11 +32,21 @@ export class ProfilePage implements OnInit {
   }
 
   async loadProfile() {
-    const userId = await this.authService.getUserId(); 
-  
-    if (userId !== null) {
-      this.userService.getUser(userId).subscribe((data: any) => {
-        this.profile = data?.datos[0] || {};
+    const userId = this.authService.getUserId();
+    if (userId) {
+      this.userService.getUser(userId).subscribe({
+        next: (user) => {
+          if (user) {
+            this.profile = user.datos[0] || {};
+          } else {
+            console.error('No se encontraron datos del usuario');
+            this.profile = {};
+          }
+        },
+        error: (error) => {
+          console.error('Error al cargar el perfil', error);
+          this.profile = {};
+        }
       });
     } else {
       console.error('No se encontró un userId válido');
@@ -44,14 +54,15 @@ export class ProfilePage implements OnInit {
     }
   }
 
-  
-
   async takePhoto() {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
-      source: CameraSource.Prompt // Permite al usuario elegir entre la cámara y la galería
+      source: CameraSource.Prompt, // Permite al usuario elegir entre la cámara y la galería
+      promptLabelHeader: 'Seleccionar fuente', // Título del prompt
+      promptLabelPhoto: 'Tomar foto', // Opción para tomar foto
+      promptLabelPicture: 'Seleccionar de la galería' // Opción para seleccionar de la galería
     });
 
     if (image) {
@@ -66,7 +77,7 @@ export class ProfilePage implements OnInit {
       if (user && user.datos && user.datos.length > 0) {
         // Clona el objeto datos para evitar mutaciones no deseadas
         const updatedDatos = { ...user.datos[0], profilePhoto: photoUrl };
-  
+
         // Haz un patch con el objeto completo de datos
         this.userService.updateUser(userId, { datos: [updatedDatos] }).then(() => {
           this.profile.profilePhoto = photoUrl;

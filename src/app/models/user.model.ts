@@ -3,14 +3,15 @@ export interface User {
     username: string;
     email: string;
     password: string;
-    nivel: number,
+    nivel: number;
     datos: [{
-        nombre: string,
-        apellido: string,
-        edad: string,
-        whatsapp: string,
-        carrera: string,
-        sede: string
+        nombre: string;
+        apellido: string;
+        edad: string;
+        whatsapp: string;
+        carrera: string;
+        sede: string;
         profilePhoto: string;
-    }]
+    }];
+    events: [];
 }

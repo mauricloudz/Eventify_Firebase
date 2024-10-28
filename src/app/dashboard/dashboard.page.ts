@@ -1,10 +1,9 @@
-import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 import { addIcons } from 'ionicons';
 import { add } from 'ionicons/icons';
-import { UserService } from '../services/user.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,39 +19,37 @@ export class DashboardPage implements OnInit {
     { name: 'Stands', icon: 'megaphone-outline' }
   ];
 
-  profile: any = {}; 
+  profile: any = {};
 
   constructor(
-    private modalController: ModalController,
-    private navCtrl: NavController,
-    private userService: UserService,
     private authService: AuthService,
+    private userService: UserService,
     private router: Router,
   ) {
     addIcons({ add });
   }
 
   async ngOnInit() {
-    this.loadProfile(); 
+    this.loadProfile();
   }
 
   async loadProfile() {
-    const userId = await this.authService.getUserId();
-  
-    if (userId !== null) {
-      this.userService.getUser(userId).subscribe(
-        (data: any) => {
-          if (data && data.datos && data.datos.length > 0) {
-            this.profile = data.datos[0];
+    const userId = this.authService.getUserId();
+    if (userId) {
+      this.userService.getUser(userId).subscribe({
+        next: (user) => {
+          if (user) {
+            this.profile = user.datos[0] || {};
           } else {
+            console.error('No se encontraron datos del usuario');
             this.profile = {};
           }
         },
-        (error: any) => {
+        error: (error) => {
           console.error('Error al cargar el perfil', error);
-          this.profile = null;
+          this.profile = {};
         }
-      );
+      });
     } else {
       console.error('No se encontró un userId válido');
       this.profile = {};
@@ -60,6 +57,6 @@ export class DashboardPage implements OnInit {
   }
 
   openCategoryDetails(categoryName: string) {
-    this.navCtrl.navigateForward(`/category-details/${categoryName}`);
+    this.router.navigate([`/category-details/${categoryName}`]);
   }
 }

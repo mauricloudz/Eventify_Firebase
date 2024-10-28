@@ -26,7 +26,8 @@ export class UserService {
             carrera: "",
             sede: "",
             profilePhoto: ""
-          }]
+          }],
+          events: []
         });
       });
   }
@@ -42,6 +43,4 @@ export class UserService {
   updateUser(userId: string, datos: any): Promise<void> {
     return this.firestore.collection('users').doc(userId).update(datos);
   }
-
-  
 }

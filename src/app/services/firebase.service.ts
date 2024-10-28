@@ -18,6 +18,15 @@ export class FirebaseService {
   firestore = inject(AngularFirestore);
   storage = inject(AngularFireStorage);
 
+  constructor(
+  ) {
+    this.firestore.persistenceEnabled$.subscribe(enabled => {
+      if (!enabled) {
+        console.log('Firestore persistence is not enabled');
+      }
+    });
+  }
+
 
 
   //CRUD USUARIOS

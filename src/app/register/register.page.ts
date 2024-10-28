@@ -52,7 +52,8 @@ export class RegisterPage {
           carrera: "",
           sede: "",
           profilePhoto: ""
-        }] // Array vacío por defecto
+        }], // Array vacío por defecto
+        events: [] // Array con un objeto vacío por defecto
       };
 
       try {
@@ -92,8 +93,6 @@ export class RegisterPage {
 
   async setUserInfo(uid: string) {
     if (this.registerForm.valid) {
-
-
       const { username, email, password } = this.registerForm.value;
       const user: User = {
         uid,
@@ -109,7 +108,8 @@ export class RegisterPage {
           carrera: "",
           sede: "",
           profilePhoto: ""
-        }] // Array vacío por defecto
+        }], // Array vacío por defecto
+        events: [] // Array vacío por defecto
       };
 
       let path = `users/${uid}`;
@@ -122,14 +122,13 @@ export class RegisterPage {
         this.utilsSvc.saveInLocalStorage('user', user);
         this.utilsSvc.routerLink('/login');
         this.registerForm.reset();
-
       } catch (err) {
         console.log(err);
         this.utilsSvc.presentToast({
           message: err.message,
           duration: 3000,
           color: 'danger'
-        })
+        });
       }
     }
   }

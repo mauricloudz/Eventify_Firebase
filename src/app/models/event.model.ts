@@ -18,4 +18,7 @@ export interface Event {
     asistentesPresencial: number;
     asistentesOnline: number;
     enlaces: string;
+    registeredUsers: [{
+        userId: string;
+    }];
 }

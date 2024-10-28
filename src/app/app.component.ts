@@ -27,10 +27,15 @@ export class AppComponent implements OnInit {
 
   async checkSession() {
     const session = await this.storageService.getSession();
-    setTimeout(() => {
+    setTimeout(async () => {
       if (session && session.userId) {
-        this.authService.setUserId(session.userId);
-        this.router.navigate(['/tabs/dashboard']);
+        const userId = this.authService.getUserId();
+        if (userId === session.userId) {
+          this.router.navigate(['/tabs/dashboard']);
+        } else {
+          await this.authService.logout();
+          this.router.navigate(['/']);
+        }
       } else {
         this.router.navigate(['/']);
       }
